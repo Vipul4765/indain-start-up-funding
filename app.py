@@ -35,7 +35,7 @@ def load_overall_analysis():
     with col4:
         st.metric('Funded Startups', num_startups)
 
-    st.header('MoM graph')
+    st.header('Month on Month  graph')
     selected_option = st.selectbox('Select Type', ['Total', 'Count'])
     if selected_option == 'Total':
         temp_df = df.groupby(['year', 'month'])['amount'].sum().reset_index()
@@ -95,7 +95,7 @@ def load_investor_details(investor):
     df['year'] = df['date'].dt.year
     year_series = df[df['investors'].str.contains(investor)].groupby('year')['amount'].sum()
 
-    st.subheader('YoY Investment')
+    st.subheader('Year of Year Investment')
     fig2, ax2 = plt.subplots()
     ax2.plot(year_series.index, year_series.values)
     ax2.set_xlabel('Year')
